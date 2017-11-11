@@ -10,7 +10,7 @@ public abstract class NamedTrigger implements Trigger {
         this.caption = caption;
     }
 
-    protected final String getCaption() {
+    public final String getCaption() {
         return caption;
     }
 }
