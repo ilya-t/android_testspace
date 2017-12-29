@@ -40,12 +40,28 @@ public abstract class MadLabActivity extends AppCompatActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {
-            int index = (keyCode - KeyEvent.KEYCODE_0)-1;
-            if (index < cmdList.size()) {
+            int index = keyCodeToNumber(keyCode) - 1;
+            if (index >= 0 && index < cmdList.size()) {
                 cmdList.get(index).pull();
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private int keyCodeToNumber(int keyCode) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_0: return 0;
+            case KeyEvent.KEYCODE_1: return 1;
+            case KeyEvent.KEYCODE_2: return 2;
+            case KeyEvent.KEYCODE_3: return 3;
+            case KeyEvent.KEYCODE_4: return 4;
+            case KeyEvent.KEYCODE_5: return 5;
+            case KeyEvent.KEYCODE_6: return 6;
+            case KeyEvent.KEYCODE_7: return 7;
+            case KeyEvent.KEYCODE_8: return 8;
+            case KeyEvent.KEYCODE_9: return 9;
+        }
+        return -1;
     }
 
     @Override
