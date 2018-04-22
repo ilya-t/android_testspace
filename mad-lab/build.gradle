@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.targetSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -16,6 +15,7 @@ android {
             buildConfigField("String", "EXPERIMENT_NAME", "\"${gitBranch()}\"")
         }
     }
+    buildToolsVersion rootProject.ext.buildToolsVersion
 }
 
 def gitBranch() {
@@ -28,5 +28,5 @@ def gitBranch() {
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 }
