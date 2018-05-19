@@ -3,11 +3,18 @@ package com.madlab.core;
 /**
  * Version of trigger with caption.
  */
-public abstract class NamedTrigger implements Trigger {
+public class NamedTrigger implements Trigger {
     private final String caption;
+    private final Trigger trigger;
 
-    protected NamedTrigger(String caption) {
+    public NamedTrigger(String caption, Trigger trigger) {
         this.caption = caption;
+        this.trigger = trigger;
+    }
+
+    @Override
+    public void pull() {
+        trigger.pull();
     }
 
     public final String getCaption() {

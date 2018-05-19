@@ -1,6 +1,5 @@
 package com.madlab.core;
 
-import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 
@@ -13,11 +12,22 @@ import com.madlab.MadLabActivity;
  * To configure your triggers at control panel use {@link MadLabActivity#addTriggers(Trigger...)}.
  * To setup your test zone use {@link #getExperimentLayout()}.
  */
-public interface Experiment {
-    @LayoutRes int getExperimentLayout();
+public class Experiment {
+    private final MadLabActivity activity;
+
+    public Experiment(@NonNull MadLabActivity a) {
+        activity = a;
+    }
+
+    public MadLabActivity getActivity() {
+        return activity;
+    }
 
     /**
-     * Called at {@link android.app.Activity#onCreate(Bundle)}
+     * Override this method to provide own experiment layout.
      */
-    void onSetupExperiment(@NonNull MadLabActivity a);
+    @LayoutRes
+    public int getExperimentLayout() {
+        return 0;
+    }
 }

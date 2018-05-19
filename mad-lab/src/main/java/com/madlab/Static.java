@@ -3,7 +3,7 @@ package com.madlab;
 import android.content.Context;
 import android.content.res.Resources;
 import android.widget.TextView;
-import com.madlab.MadLabActivity;
+
 import com.madlab.core.Experiment;
 
 /**
@@ -21,7 +21,11 @@ public class Static {
     public static Context c;
     public static Resources r;
     static TextView tvOutput;
-    public static Experiment experiment;
+    static Experiment experiment;
+
+    public static <T extends Experiment> T experiment() {
+        return (T) experiment;
+    };
 
     public static void output(String text) {
         tvOutput.setText(text);

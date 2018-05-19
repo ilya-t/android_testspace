@@ -7,13 +7,12 @@ import com.madlab.core.Experiment
 /**
  * @see Experiment
  */
-class CurrentExperiment : Experiment {
-    @LayoutRes
-    override fun getExperimentLayout() = R.layout.basic_layout
-
-    override fun onSetupExperiment(a: MadLabActivity) {
+class CurrentExperiment(a: MadLabActivity) : Experiment(a) {
+    init {
         a.addTriggers(
-                /* add your triggers */
+                /* add triggers here */
         )
     }
+    @LayoutRes
+    override fun getExperimentLayout() = R.layout.basic_layout
 }

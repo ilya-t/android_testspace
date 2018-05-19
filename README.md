@@ -14,30 +14,20 @@ Take a look at `com.testspace.CurrentExperiment`, for example:
 
 ```java
 public class CurrentExperiment implements Experiment {
+    CurrentExperiment(MainActivity a) {
+        a.addTriggers(
+                () -> a.tvOutput.setText("Trigger#1 pressed"),
+                () -> Static.output("Trigger#2 pressed!")
+                // ^ static version of a.tvOutput.setText(..)
+        );
+    }
+
     @Override @LayoutRes
     public int getExperimentLayout() {
         return R.layout.basic_layout;// edit basic layout of create your own
     }
-
-    @Override
-    public void onCreate(final MadLabActivity a) {
-        a.addTriggers(
-                new Trigger() {
-                    @Override
-                    public void pull() {
-                        a.tvOutput.setText("T1");
-                    }
-                },
-                new Trigger() {
-                    @Override
-                    public void pull() {
-                        Static.output("T2!");//Static version of a.tvOutput.setText("T2!")
-                    }
-                }
-        );
-    }
 }
 ```
 
-For each trigger a button will be created, this button may be clicked or triggered by keyboard button 1 - to pull first trigger, 2 - to pull second. 
-This could be very useful at emulators. 
+For each trigger a button will be created, this button may be clicked or triggered by keyboard button 1 - to pull first trigger, 2 - to pull second.
+This could be very useful at emulators.

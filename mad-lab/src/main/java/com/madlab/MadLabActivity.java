@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.madlab.core.*;
+
+import com.madlab.core.Experiment;
 import com.madlab.core.NamedTrigger;
 import com.madlab.core.Trigger;
 
@@ -20,8 +21,7 @@ import java.util.Map;
 
 public abstract class MadLabActivity extends AppCompatActivity {
     private LinearLayout layoutActions;
-    private FrameLayout layoutCountainer;
-    public TextView tvOutput;
+    private TextView tvOutput;
     private ArrayList<Trigger> cmdList = new ArrayList<>();
     private Map<View, Trigger> cmdMap = new HashMap<>();
 
@@ -68,27 +68,24 @@ public abstract class MadLabActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mad_lab_activity);
-
+        layoutActions = findViewById(R.id.layout_actions);
+        FrameLayout container = findViewById(R.id.layout_container);
+        tvOutput = findViewById(R.id.tv_output);
+        injectStatic();
 
         experiment = createExperiment();
 
-        if (experiment != null) {
-            setTitle("Experiment: " + BuildConfig.EXPERIMENT_NAME);
+        if (experiment == null) {
+            return;
         }
-
-        layoutActions = (LinearLayout)findViewById(R.id.layout_actions);
-        layoutCountainer = (FrameLayout)findViewById(R.id.layout_container);
-        tvOutput = (TextView)findViewById(R.id.tv_output);
-        injectStatic();
+        setTitle("Experiment: " + BuildConfig.EXPERIMENT_NAME);
 
         int experimentLayout = experiment.getExperimentLayout();
         if (experimentLayout > 0) {
-            layoutCountainer.addView(
+            container.addView(
                     LayoutInflater.from(this).inflate(experimentLayout, null)
             );
         }
-
-        experiment.onSetupExperiment(this);
     }
 
     private void injectStatic() {
