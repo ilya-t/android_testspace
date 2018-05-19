@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -24,6 +26,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        j {
+            dimension "default"
+        }
+
+        k {
+            dimension "default"
+        }
+    }
 }
 
 dependencies {
@@ -33,4 +47,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation project(':MadLab')
     testImplementation 'junit:junit:4.12'
+
+    // kotlin-related dependencies
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }

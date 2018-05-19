@@ -2,6 +2,7 @@ package com.madlab.core;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 
 import com.madlab.MadLabActivity;
 
@@ -18,5 +19,5 @@ public interface Experiment {
     /**
      * Called at {@link android.app.Activity#onCreate(Bundle)}
      */
-    void onSetupExperiment(MadLabActivity a);
+    void onSetupExperiment(@NonNull MadLabActivity a);
 }
