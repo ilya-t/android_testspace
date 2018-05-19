@@ -30,11 +30,11 @@ android {
     flavorDimensions "default"
 
     productFlavors {
-        j {
+        j/*for java*/ {
             dimension "default"
         }
 
-        k {
+        k/*for kotlin*/ {
             dimension "default"
         }
     }
