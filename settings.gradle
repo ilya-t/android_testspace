@@ -1,4 +1,3 @@
 include ':MadLab'
 project(":MadLab").projectDir = file("./mad-lab")
 include ":app"
-//include ':modules:shtrih-m_printer_controller:library'
