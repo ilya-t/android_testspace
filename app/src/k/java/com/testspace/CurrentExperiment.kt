@@ -1,5 +1,6 @@
 package com.testspace
 
+import androidx.annotation.LayoutRes
 import com.madlab.MadLabActivity
 import com.madlab.core.Experiment
 
