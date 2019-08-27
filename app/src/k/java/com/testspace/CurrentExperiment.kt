@@ -1,6 +1,5 @@
 package com.testspace
 
-import android.support.annotation.LayoutRes
 import com.madlab.MadLabActivity
 import com.madlab.core.Experiment
 
@@ -13,6 +12,7 @@ class CurrentExperiment(a: MadLabActivity) : Experiment(a) {
                 /* add triggers here */
         )
     }
+
     @LayoutRes
     override fun getExperimentLayout() = R.layout.basic_layout
 }

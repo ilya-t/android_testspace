@@ -1,6 +1,6 @@
 package com.testspace;
 
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 
 import com.madlab.core.Experiment;
 
