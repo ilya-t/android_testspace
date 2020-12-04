@@ -1,6 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 
 android {
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -20,24 +22,42 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+        useIR = true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion "$rootProject.ext.kotlin_version"
+        kotlinCompilerExtensionVersion "$composeVersion"
+    }
+
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+    }
+
     buildTypes {
         debug/*all*/ {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        all {
+            buildConfigField("String", "EXPERIMENT_NAME", "\"${gitBranch()}\"")
+        }
     }
 
     flavorDimensions "default"
+}
 
-    productFlavors {
-        j/*for java*/ {
-            dimension "default"
-        }
-
-        k/*for kotlin*/ {
-            dimension "default"
-        }
-    }
+static def gitBranch() {
+    def branch = ""
+    def proc = "git rev-parse --abbrev-ref HEAD".execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    branch
 }
 
 dependencies {
@@ -46,10 +66,25 @@ dependencies {
     })
 
     implementation "androidx.appcompat:appcompat:$androidxVersion"
-    implementation project(':MadLab')
     testImplementation 'junit:junit:4.12'
 
     // kotlin-related dependencies
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$rootProject.ext.kotlin_version"
+
+    implementation "androidx.compose.ui:ui:$androidxVersion"
+    // Tooling support (Previews, etc.)
+    implementation "androidx.ui:ui-tooling:$androidxVersion"
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation "androidx.compose.foundation:foundation:$androidxVersion"
+    // Material Design
+    implementation "androidx.compose.material:material:$androidxVersion"
+    // Material design icons
+    implementation "androidx.compose.material:material-icons-core:$androidxVersion"
+    implementation "androidx.compose.material:material-icons-extended:$androidxVersion"
+    // Integration with observables
+    implementation "androidx.compose.runtime:runtime-livedata:$androidxVersion"
+
+    // UI Tests
+    androidTestImplementation "androidx.ui:ui-test:$androidxVersion"
 }

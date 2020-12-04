@@ -1,25 +1,23 @@
-package com.madlab.core;
+package com.testspace.core;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-
-import com.madlab.MadLabActivity;
 
 /**
  * Experiment is a kind of control panel with triggers
  * that you can pull to see what happens at your test zone
  * - place where you may observe your experiment.
- * To configure your triggers at control panel use {@link MadLabActivity#addTriggers(Trigger...)}.
+ * To configure your triggers at control panel use {@link ExperimentActivity#addTriggers(Trigger...)}.
  * To setup your test zone use {@link #getExperimentLayout()}.
  */
 public class Experiment {
-    private final MadLabActivity activity;
+    private final ExperimentActivity activity;
 
-    public Experiment(@NonNull MadLabActivity a) {
+    public Experiment(@NonNull ExperimentActivity a) {
         activity = a;
     }
 
-    public MadLabActivity getActivity() {
+    public ExperimentActivity getActivity() {
         return activity;
     }
 

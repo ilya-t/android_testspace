@@ -1,13 +1,13 @@
 package com.testspace
 
 import androidx.annotation.LayoutRes
-import com.madlab.MadLabActivity
-import com.madlab.core.Experiment
+import com.testspace.core.Experiment
+import com.testspace.core.ExperimentActivity
 
 /**
  * @see Experiment
  */
-class CurrentExperiment(a: MadLabActivity) : Experiment(a) {
+class CurrentExperiment(a: ExperimentActivity) : Experiment(a) {
     init {
         a.addTriggers(
                 /* add triggers here */

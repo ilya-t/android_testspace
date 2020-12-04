@@ -1,4 +1,4 @@
-package com.madlab.core;
+package com.testspace.core;
 
 /**
  * Version of trigger with caption.

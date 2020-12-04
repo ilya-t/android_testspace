@@ -1,20 +1,18 @@
-package com.madlab;
+package com.testspace.core;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.widget.TextView;
 
-import com.madlab.core.Experiment;
-
 /**
  * Here you may access app's basic components despite leaks and code smells.
  * At experiments anything is permitted!
  *
- * Note that those fields injected only by {@link MadLabActivity}
+ * Note that those fields injected only by {@link ExperimentActivity}
  */
 @SuppressWarnings("ALL")
 public class Static {
-    public static MadLabActivity a;
+    public static ExperimentActivity a;
     /**
      * Application context.
      */
