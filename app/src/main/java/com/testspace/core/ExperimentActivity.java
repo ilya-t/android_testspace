@@ -21,7 +21,7 @@ import java.util.Map;
 
 public abstract class ExperimentActivity extends AppCompatActivity {
     private LinearLayout layoutActions;
-    private TextView tvOutput;
+    public TextView tvOutput;
     private ArrayList<Trigger> cmdList = new ArrayList<>();
     private Map<View, Trigger> cmdMap = new HashMap<>();
 

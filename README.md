@@ -12,20 +12,17 @@ it will make a checkout to branch with given name that is based on master. Unsav
 ### But wait! Here are couple of fancy tricks!
 Take a look at `com.testspace.CurrentExperiment`, for example:
 
-```java
-public class CurrentExperiment implements Experiment {
-    CurrentExperiment(MainActivity a) {
+```kotlin
+class CurrentExperiment(a: ExperimentActivity) : Experiment(a) {
+    init {
         a.addTriggers(
-                () -> a.tvOutput.setText("Trigger#1 pressed"),
-                () -> Static.output("Trigger#2 pressed!")
-                // ^ static version of a.tvOutput.setText(..)
+                { a.tvOutput.setText("Trigger#1 pressed") },
+                NamedTrigger("T2") { Static.output("Trigger#2 pressed!") }
         );
     }
 
-    @Override @LayoutRes
-    public int getExperimentLayout() {
-        return R.layout.basic_layout;// edit basic layout of create your own
-    }
+    @LayoutRes
+    override fun getExperimentLayout() = R.layout.basic_layout
 }
 ```
 
