@@ -4,31 +4,29 @@ plugins {
 }
 
 android {
-    buildToolsVersion(Dependencies.buildToolsVersion)
-
+    buildToolsVersion = Dependencies.buildToolsVersion
     defaultConfig {
-        applicationId("com.testspace")
-        minSdkVersion(Dependencies.minSdkVersion)
-        compileSdkVersion(Dependencies.targetSdkVersion)
-        targetSdkVersion(Dependencies.targetSdkVersion)
-        versionCode(1)
-        versionName("1.00")
-        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+        applicationId = "com.testspace"
+        minSdk  = Dependencies.minSdkVersion
+        compileSdk = Dependencies.targetSdkVersion
+        targetSdk = Dependencies.targetSdkVersion
+        versionCode = 1
+        versionName = "1.00"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_1_8)
+        sourceCompatibility(JavaVersion.VERSION_17)
+        targetCompatibility(JavaVersion.VERSION_17)
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-        useIR = true
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     buildTypes {
         getByName("debug") {
-            minifyEnabled(false)
+            isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
 
@@ -38,8 +36,8 @@ android {
             }
         }
     }
-
-    flavorDimensions("default")
+    flavorDimensions += listOf("default")
+    namespace = "com.testspace"
 }
 
 dependencies {
@@ -48,7 +46,7 @@ dependencies {
     }
 
     implementation("androidx.appcompat:appcompat:${Dependencies.androidxVersion}")
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13.2")
 
     // kotlin-related dependencies
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Dependencies.kotlinVersion}")
